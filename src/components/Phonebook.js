@@ -11,24 +11,31 @@ export const Phonebook = () => {
   const contacts = useSelector(selectContacts);
   const dispatch = useDispatch();
 
-  const onSubmit = e => {
-    e.preventDefault();
+   const handleSubmit = event => {
+    event.preventDefault(); 
+
     const contact = {
       id: nanoid(),
-      name: e.currentTarget.elements.name.value,
-      number: e.currentTarget.elements.number.value,
+      name: event.currentTarget.elements.name.value,
+      number: event.currentTarget.elements.number.value,
     };
+
     
-    const isItInContact = contacts.find(({ name }) => name.toLowerCase() === contact.name.toLowerCase());
-    if (isItInContact) {
-      alert(`${contact.name} ia already in contacts`)
+    const isExist = contacts.find(
+      ({ name }) => name.toLowerCase() === contact.name.toLowerCase()
+    );
+
+   
+    if (isExist) {
+      return alert(`${contact.name} is already in contacts.`);
     }
-    dispatch(addContact(contact));
-    e.currentTarget.reset()
-  }
+
+    dispatch(addContact(contact)); 
+    event.currentTarget.reset(); 
+  };
   return (
     <div>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={handleSubmit}>
         <Label>
           Name
           <Input

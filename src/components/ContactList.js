@@ -2,12 +2,12 @@ import React from 'react';
 import { ContactsList, ContactItem, Button } from './Phonebook.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { selectError, selectFilter, selectIsLoading } from 'redux/Selectors';
+import { selectError, selectFilteredContacts, selectIsLoading } from 'redux/Selectors';
 import { fetchContacts, deleteContact } from 'redux/operations';
 
 export const ContactList = () => {
   const dispatch = useDispatch();
-  const filteredContacts = useSelector(selectFilter);
+  const filteredContacts = useSelector(selectFilteredContacts);
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
 
@@ -19,9 +19,12 @@ export const ContactList = () => {
     dispatch(deleteContact(id));
   };
 
-  if (!Array.isArray(filteredContacts) || filteredContacts.length === 0) {
-    return <p>No contacts found</p>;
-  }
+  {!filteredContacts?.length && !error && !isLoading && (
+        <p>No contacts found.</p>
+      )}
+
+      {error && <p>{error}</p>}
+      <p></p>
 
   return (
     <ContactsList>
