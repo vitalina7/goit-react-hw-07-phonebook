@@ -19,13 +19,9 @@ export const ContactList = () => {
     dispatch(deleteContact(id));
   };
 
-  {!filteredContacts?.length && !error && !isLoading && (
-        <p>No contacts found.</p>
-      )}
-
-      {error && <p>{error}</p>}
-      <p></p>
-
+  if (!filteredContacts?.length) {
+    return <p>No contacts found.</p>;
+  }
   return (
     <ContactsList>
       {filteredContacts.map(({ id, name, phone }) => (
