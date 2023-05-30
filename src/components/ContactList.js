@@ -2,7 +2,7 @@ import React from 'react';
 import { ContactsList, ContactItem, Button } from './Phonebook.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { selectError, selectFilteredContacts, selectIsLoading } from 'redux/Selectors';
+import {  selectFilteredContacts } from 'redux/Selectors';
 import { fetchContacts, deleteContact } from 'redux/operations';
 
 export const ContactList = () => {
