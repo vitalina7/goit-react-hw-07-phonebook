@@ -8,8 +8,8 @@ import { fetchContacts, deleteContact } from 'redux/operations';
 export const ContactList = () => {
   const dispatch = useDispatch();
   const filteredContacts = useSelector(selectFilteredContacts);
-  const isLoading = useSelector(selectIsLoading);
-  const error = useSelector(selectError);
+  // const isLoading = useSelector(selectIsLoading);
+  // const error = useSelector(selectError);
 
   useEffect(() => {
     dispatch(fetchContacts());
