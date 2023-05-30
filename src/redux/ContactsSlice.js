@@ -45,7 +45,7 @@ const handleDeleteContactSuccess = (state, action) => {
     ...state,
     isLoading: false,
     error: null,
-    items: state.items.filter((item) => item.id !== action.payload),
+    items: state.items.filter((item) => item.id !== action.payload.id),
   };
 };
 
